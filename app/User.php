@@ -3,6 +3,7 @@
 namespace App;
 
 
+use App\Mail\NewUserWelcomeMail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username','email', 'password',
+        'name', 'email', 'username', 'password',
     ];
 
     /**
@@ -43,15 +44,13 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        static::created(function ($user){
+        static::created(function ($user) {
             $user->profile()->create([
-                'title' =>$user->username,
-                ]);
-                
-                Mail::to($user->email)->send(new NewUserWelcomeMail());
+                'title' => $user->username,
+            ]);
 
-
-        }); 
+            Mail::to($user->email)->send(new NewUserWelcomeMail());
+        });
     }
 
     public function posts()
