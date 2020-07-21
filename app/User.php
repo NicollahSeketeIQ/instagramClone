@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 use App\Mail\NewUserWelcomeMail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
