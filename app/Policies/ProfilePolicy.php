@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Profile;
 use App\User;
+use App\Profile;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ProfilePolicy
@@ -11,18 +11,7 @@ class ProfilePolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function viewAny(User $user)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can view the model.
+     * Determine whether the user can view the profile.
      *
      * @param  \App\User  $user
      * @param  \App\Profile  $profile
@@ -34,7 +23,7 @@ class ProfilePolicy
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the user can create profiles.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -45,7 +34,7 @@ class ProfilePolicy
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the user can update the profile.
      *
      * @param  \App\User  $user
      * @param  \App\Profile  $profile
@@ -53,11 +42,11 @@ class ProfilePolicy
      */
     public function update(User $user, Profile $profile)
     {
-        return $user->id = $profile->user_id;
+        return $user->id == $profile->user_id;
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the user can delete the profile.
      *
      * @param  \App\User  $user
      * @param  \App\Profile  $profile
@@ -69,7 +58,7 @@ class ProfilePolicy
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the user can restore the profile.
      *
      * @param  \App\User  $user
      * @param  \App\Profile  $profile
@@ -81,7 +70,7 @@ class ProfilePolicy
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the user can permanently delete the profile.
      *
      * @param  \App\User  $user
      * @param  \App\Profile  $profile
